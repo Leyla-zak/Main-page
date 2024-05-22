@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IN TIME - твои планы в наших руках</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  
-  <style>
+  <link rel="stylesheet" href="style.css" />
+  <!-- <style>
     body {
       font-family: 'IM FELL French Canon', sans-serif;
       margin: 0;
@@ -28,8 +28,6 @@
       display: flex;
       align-items: center;
       width: auto;
-
-      
     }
 
     .logo {
@@ -37,7 +35,7 @@
       font-weight: bold;
       color: #000;
       text-decoration: none;
-    
+      margin-left: 60px;
     }
 
     .nav {
@@ -108,7 +106,8 @@
       margin-top: 1px;
     }
 
-
+    /* это если меню будет */
+/* 
     .menu-toggle {
       background-color: transparent;
       border: none;
@@ -119,9 +118,9 @@
       margin-right: 30px;
       position: relative;
       left: -10px;
-    }
+    } */
 
-    .menu {
+    /* .menu {
       position: absolute;
       top: 60px;
       right: 0;
@@ -142,9 +141,9 @@
       text-decoration: none;
       transition: background-color 0.3s;
       
-    }
+    } */
     .main-content {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 30px;
       /* text-align: center; */
@@ -157,17 +156,20 @@
     }
 
     .text-content {
-      text-align: left; /* выравнивание текста влево */
-      margin-right: 40px; /* добавление отступа между текстом и картинкой */
-      order: -1;
+      /* text-align: left; выравнивание текста влево */
+      margin-right: 20px; /* добавление отступа между текстом и картинкой */
+      margin-top: 150px;
+      flex-basis: 50%;
     }
 
 
     .main-content h1 {
       font-size: 48px;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px; */
       line-height: 0.7;
-      /* margin-right: 200px */
+      margin-right: 200px;
+      margin-left: 10px
+
     }
 
     .main-content p {
@@ -177,15 +179,9 @@
     }
     
 
-    /* .main-image {
-      max-width: 75%; */
-      /* height: auto; */
-      /* margin-left: 60px;
-    } */
-
     .image-wrapper {
       position: relative;
-      max-width: 50%;
+      max-width: 70%;
       /* margin-right: 50px; */
       height: auto; /* задаем фиксированную высоту */
       overflow: hidden; /* скрываем части изображений, которые выходят за границы */
@@ -197,17 +193,18 @@
       /* left: 500px; */
       width: 100%;
       height: 100%;
-      top: 100px;
+      top: 20px;
+      margin-left: 200px;
       opacity: 0;
       animation: imageSlide 10s infinite linear;
-      transform: scale(0.5);
+      transform: scale(0.7);
     }
     .image1 {
       z-index: 1;
     }
 
     .image2 {
-      animation-delay: 5s; /* задержка второй картинки на 5 секунд */
+      animation-delay: 7s; /* задержка второй картинки на 5 секунд */
     }
 
     @keyframes imageSlide {
@@ -256,7 +253,7 @@
         .cta-button:hover {
           background-color: #333;
         }
-  </style>
+  </style> -->
 </head>
 <body>
   <header class="header">
@@ -266,7 +263,7 @@
     <nav class="nav">
       <ul class="nav-links">
         <li><a href="#">My calendar</a></li>
-        <li><a href="#">Мои заметки</a></li>
+        <li><a href="#">My notes</a></li>
         <li><a href="#" class="login-link">Log In</a></li>
         <li><a href="#" class="theme-toggle-link">
           <i class="fas fa-sun"></i>
@@ -291,7 +288,7 @@
     <div class="content-wrapper">
       <div class="text-content">
         <h1>"IN TIME" - это планировщик</h1>
-        <p>который помогает вам планировать ваше время и выполнять задачи с высокой производительностью без стресса.</p>
+        <p>который помогает вам планировать</br> ваше время и выполнять задачи с высокой производительностью без стресса.</p>
       </div>
       <img src="https://sun9-25.userapi.com/impg/Ogg8Nvsor6q4Yd6fw0Q2pTEunV7yvN9C8q5c6g/h8t2bVU89k4.jpg?size=2560x1825&quality=96&sign=b6a2141c9c846738d8aaa12385157f42&type=album" alt="Планировщик In Time" class="main-image image1">
       <img src="https://sun7-24.userapi.com/impg/ufjqAgy4sJ9wyVOzWEJ8M-cgG6gxqjxeqqrOgw/cxnM4-Dllbg.jpg?size=2560x1825&quality=96&sign=1c5bbcad25d83e6608e1ec0122843621&type=album" alt="Дополнительное изображение" class="main-image image2">
