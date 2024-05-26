@@ -30,4 +30,5 @@ from django.urls import path
 from inTime import views
 urlpatterns = [
     path('', views.index),
+    path('LogIn.html/', views.login, name='login'),
 ]

@@ -1,42 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In</title>
-  <link rel="stylesheet" href="style.css"> <!-- Ссылка на общий CSS файл -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4efef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #0c0c0c;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    .login-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-container button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="LogIn.html">Log In</a></li>
-        <!-- Добавьте ссылки на другие страницы, если они есть -->
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <div class="login-container">
-      <h1>Log In</h1>
-      <form action="#" method="post">
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn">Log In</button>
-      </form>
-      <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2023 My Website. All rights reserved.</p>
-  </footer>
+  <div class="login-container">
+    <h2>Log In</h2>
+    <form>
+      <input type="text" placeholder="Имя пользователя" required>
+      <input type="password" placeholder="Пароль" required>
+      <button type="submit">Войти</button>
+    </form>
+  </div>
 </body>
 </html>
