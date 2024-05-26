@@ -29,6 +29,7 @@ from django.contrib import admin
 from django.urls import path
 from inTime import views
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index),
     path('LogIn.html/', views.login, name='login'),
 ]
