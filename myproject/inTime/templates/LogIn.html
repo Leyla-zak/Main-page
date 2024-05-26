@@ -4,63 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In</title>
+  
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4efef;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
     }
-
     .login-container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
+        background-color: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
-
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    h1 {
+        margin-top: 0;
     }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #0c0c0c;
-      border-radius: 3px;
-      box-sizing: border-box;
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        box-sizing: border-box;
     }
-
-    .login-container button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      width: 100%;
+    button {
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        width: 100%;
     }
-
-    .login-container button:hover {
-      background-color: #45a049;
+    a {
+        color: black;
+        text-decoration: none;
     }
-  </style>
+</style>
 </head>
 <body>
   <div class="login-container">
-    <h2>Log In</h2>
-    <form>
-      <input type="text" placeholder="Имя пользователя" required>
-      <input type="password" placeholder="Пароль" required>
-      <button type="submit">Войти</button>
-    </form>
+      <h1>In Time</h1>
+      <form method="post">
+          {% csrf_token %}
+          <input type="text" placeholder="Имя пользователя" required>
+          <input type="password" placeholder="Пароль" required>
+          <button type="submit">Продолжить</button>
+      </form>
+      <p><a href="#">Первый раз?</a> | <a href="#">Зарегистрироваться</a></p>
   </div>
+
 </body>
 </html>
