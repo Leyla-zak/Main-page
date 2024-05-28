@@ -6,6 +6,6 @@
 - [ ] RabbitMQ
 - [ ] JWT
 - [ ] Job Shedule
-- [ ] Postman
+- [x] Postman
 - [x] Commit/PR
 - [ ] Microsrvice
