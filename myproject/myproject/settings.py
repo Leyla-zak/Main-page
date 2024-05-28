@@ -142,6 +142,13 @@ REST_FRAMEWORK = {
            'rest_framework.renderers.JSONRenderer',
            'rest_framework.renderers.BrowsableAPIRenderer',
        ],    
+       
         'EXCEPTION_HANDLER': 'inTime.exceptions.core_exception_handler',
         'NON_FIELD_ERRORS_KEY': 'error',
+
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+        'authentication.backends.JWTAuthentication',
+    ),
 }
+
+SECRET_KEY = '+j*%4cv^%+q0$1!8o-)eyowyy32e9@0il*rw(11a+gj7*pup2p'
