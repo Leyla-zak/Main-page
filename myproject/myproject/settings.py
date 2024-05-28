@@ -73,29 +73,6 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-       'DEFAULT_RENDERER_CLASSES': [
-           'rest_framework.renderers.JSONRenderer',
-           'rest_framework.renderers.BrowsableAPIRenderer',
-       ]
-   }
-
-REST_FRAMEWORK = {
-        'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        ],
-        'DEFAULT_PARSER_CLASSES': [
-        # 'rest_framework.parsers.JSONParser',
-        'rest_framework.parsers.MultiPartParser',
-        ],
-        'DEFAULT_RENDERER_CLASSES': [
-           'rest_framework.renderers.JSONRenderer',
-           'rest_framework.renderers.BrowsableAPIRenderer',
-       ]
-}
-
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
@@ -150,3 +127,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        ],
+        'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+        ],
+        'DEFAULT_RENDERER_CLASSES': [
+           'rest_framework.renderers.JSONRenderer',
+           'rest_framework.renderers.BrowsableAPIRenderer',
+       ],    
+        'EXCEPTION_HANDLER': 'inTime.exceptions.core_exception_handler',
+        'NON_FIELD_ERRORS_KEY': 'error',
+}
