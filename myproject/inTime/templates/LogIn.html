@@ -52,16 +52,28 @@
 </style>
 </head>
 <body>
-  <div class="login-container">
-      <h1>In Time</h1>
-      <form method="post">
+    <div class="login-container">
+        <h1>In Time</h1>
+        <form method="post" action="{% url 'sign_in' %}">
           {% csrf_token %}
-          <input type="text" placeholder="Имя пользователя" required>
-          <input type="password" placeholder="Пароль" required>
+      
+          {% for field in form %}
+          <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+      
           <button type="submit">Продолжить</button>
-      </form>
-      <p><a href="#">Первый раз?</a> | <a href="#">Зарегистрироваться</a></p>
-  </div>
+        </form>
+        <p><a href="#">Первый раз?</a> | <a href="#">Зарегистрироваться</a></p>
+      </div>
 
 </body>
 </html>
