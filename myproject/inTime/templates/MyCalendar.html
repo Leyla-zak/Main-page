@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Calendar</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+
+*{
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+#meuCalendario{
+	background: #ebebeb;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	width: 1200px;
+	height: 1200px;
+	padding: 10px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+#areaDias, #areaBtn{
+	width: 100%;
+}
+#areaBtn{
+	margin: 5px 0px;
+}
+.flexwrap{
+	display: flex;
+	flex-wrap: wrap;
+}
+.dia{
+	padding: 2px 0px;
+	margin: 1px;
+	text-align: center;
+	width: 13.5770%;
+	height: initial;
+	background: white;
+	cursor: default;
+}
+.dia:hover{
+	background: rgb(228, 220, 220);
+}
+.dia.active{
+	background: #5697ff;
+}
+.dia.cinza{
+	background: #ddc6c6;
+}
+#labelCalendario{
+	float: right;
+}
+.cabecalhoDia{
+	border: unset;
+	border-bottom: 1px solid black;
+	background: transparent;
+}
+.cabecalhoDia:hover{
+	background: transparent;
+}
+button{
+	background: white;
+	border: 1px solid rgb(228, 220, 220);
+	outline-color: rgb(128, 128, 128);
+	padding: 2px 12px;
+}
+button:hover{
+	border-top: 1px solid black;
+}
+button i {
+	font-size: 15px !important;
+}
+#dataEscolhida{
+	margin-bottom: 5px;
+}
+#listaTodo{
+	height: 376px;
+	overflow: auto;
+}
+.todo.item {
+	width: 100%;
+	padding: 5px 2px;
+	outline-color: rgba(0,0,0,0.25);
+}
+#txtNovoTask{
+	border: 2px solid #b5b5b5;
+}
+.tem-todo{
+	background: rgb(216, 56, 56);
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	color: white;
+	font-size: 0.9em;
+	margin: 13px auto;
+}
+.todo.item:nth-child(even) {
+	background-color: #CCCCCC;
+}
+
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+	content: attr(data-placeholder) "\00a0 ";
+	float: left;
+	margin-left: 2px;
+	color: #b3b3b3;
+}
+
+.flip-container {
+	perspective: 1000px;
+}
+.flip-container, .front, .back {
+	width: 1200px;
+	height: 1200px;
+	margin: 0 auto;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front {
+	z-index: 2;
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+.flip-container.hover .flipper, .flip-container.flip .flipper {
+	transform: rotateY(180deg);
+}
+
+
+@media only screen and (min-width: 600px) {
+	.flip-container, .front, .back {
+		height: 500px;
+		width: 500px;
+	}
+	button{
+		padding: 1px 6px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#meuCalendario {
+		height: 1000px;
+		width: 1000px;
+	}
+	.flip-container, .front, .back {
+		height: 1000px;
+		width: 1000px;
+	}
+	.dia {
+		width: 13.5770%;
+		height: initial;
+	}
+}
+    </style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+		var todo = [];
+	</script>
+
+	<script>
+
+const Calendario = (function () {
+	let qq = document.querySelector.bind(document);
+
+	class CalendarioPrivado {
+		constructor(_selectorCalendario, _selectorMesAnterior, _selectorProximoMes, _selectorLabelCalendario, callback) {
+			Object.assign(this, {
+				_selectorCalendario,
+				_selectorMesAnterior,
+				_selectorProximoMes,
+				_selectorLabelCalendario,
+				_data: new Date()
+			});
+
+			this.adicionaEventoAosBotoes();
+			this.mostraData();
+
+			if (typeof callback === 'function')
+				callback();
+		}
+
+		montaDias() {
+			qq(this._selectorCalendario).innerHTML = '';
+
+			let diaSemana = this.getSemanaPrimeiroDiaMes(this._data);
+			let ultimoDia = this.getUltimoDiaMes(this._data);
+
+
+			let diaMesAnterior = new Date(this._data.getFullYear(), this._data.getMonth(), 1);
+			diaMesAnterior.setDate(diaMesAnterior.getDate() - diaSemana);
+
+			for (let i = 0; i < diaSemana; i++) {
+				qq(this._selectorCalendario).innerHTML += `<div class="dia cinza"><span class="num">${diaMesAnterior.getDate() + i}</span></div>`;
+			}
+
+			for (let i = 1; i <= ultimoDia; i++) {
+				let active = '';
+				if (i == new Date().getDate() && this._data.getMonth() == new Date().getMonth()) {
+					active = 'active';
+				}
+
+				qq(this._selectorCalendario).innerHTML += `<div class="dia ${active}"><span class="num">${i}</span></div>`;
+			}
+
+			let self = this;
+			notificacaoTodo();
+
+			$('.dia:not(.cabecalhoDia)').on('mousedown', function (e) {
+				let mes = (self._data.getMonth() + 1).toString().padStart(2, '0');
+				let ano = self._data.getFullYear().toString().padStart(2, '0');
+
+				$('.dia').each(function (i, e) {
+					$(this).removeClass('active');
+				});
+				$(this).addClass('active', 'true');
+				$("#myCardFlip").toggleClass("flip");
+				$('#dataEscolhida').text(`${$(this).find('.num').text()}/${mes}/${ano}`);
+				listaTodo();
+			});
+		}
+
+		mostraData() {
+			let dia = this._data.getDate().toString().padStart(2, '0');
+			let mes = (this._data.getMonth() + 1).toString().padStart(2, '0');
+			let ano = this._data.getFullYear().toString().padStart(2, '0');
+
+			qq(this._selectorLabelCalendario).innerHTML = `${mes}/${ano}`;
+
+			this.montaDias();
+		}
+
+		mesAnterior() {
+			this._data.setMonth(this._data.getMonth() - 1);
+			this.mostraData();
+		}
+
+		proximoMes() {
+			this._data.setMonth(this._data.getMonth() + 1);
+			this.mostraData();
+		}
+
+		adicionaEventoAosBotoes() {
+			let self = this;
+			qq(this._selectorMesAnterior).addEventListener('click', function () { self.mesAnterior(); });
+			qq(this._selectorProximoMes).addEventListener('click', function () { self.proximoMes(); });
+		}
+
+		getUltimoDiaMes(data) {
+			let dataNova = new Date(data.getFullYear(), (data.getMonth() + 1), 1);
+			dataNova.setDate(dataNova.getDate() - 1);
+			return dataNova.getDate();
+		}
+
+		getSemanaPrimeiroDiaMes(data) {
+			let dataNova = new Date(data.getFullYear(), (data.getMonth()), 1);
+			return dataNova.getDay();
+		}
+	}
+
+	return CalendarioPrivado;
+})();
+    </script>
+</head>
+<body>
+
+	<div class="flip-container" id="myCardFlip">
+		<div class="flipper">
+			<div class="front">
+				<div id="meuCalendario">
+					<div id="areaBtn">
+						<button id="mesAnterior">
+							<i class="material-icons"> keyboard_arrow_left</i>
+						</button>
+						<button id="proximoMes">
+							<i class="material-icons">keyboard_arrow_right</i>
+						</button>
+						<span id="labelCalendario"></span>
+					</div>
+
+					<div class="flexwrap">
+						<div class="dia cabecalhoDia">Вс</div>
+						<div class="dia cabecalhoDia">Пн</div>
+						<div class="dia cabecalhoDia">Вт</div>
+						<div class="dia cabecalhoDia">Ср</div>
+						<div class="dia cabecalhoDia">Чт</div>
+						<div class="dia cabecalhoDia">Пт</div>
+						<div class="dia cabecalhoDia">Сб</div>
+					</div>
+					<div id="areaDias" class="flexwrap"></div>
+				</div>
+			</div>
+			<div class="back">
+				<div id="meuCalendario">
+					<div id="btnVoltarCalendario">
+						<i class="material-icons">
+							keyboard_backspace
+						</i>
+					</div>
+
+					<div id="dataEscolhida">24/07/2018</div>
+
+					<div class="todo item" contenteditable="true" class="editable" data-placeholder="Desc Task:" id="txtNovoTask"></div>
+					<div id="listaTodo">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	var meuCalendario = new Calendario('#areaDias', '#mesAnterior', '#proximoMes', '#labelCalendario');
+
+	$('#btnVoltarCalendario').click(function(){
+		$("#myCardFlip").toggleClass("flip");
+	});
+
+	listaTodo();
+
+	$('#txtNovoTask').on('keyup', function(e) {
+		var code = e.which;
+		if (code === 13 && !e.shiftKey && $('#txtNovoTask').text().trim() !== '') {
+			adicionaTask($('#dataEscolhida').text(), textbr($('#txtNovoTask')));
+			$('#txtNovoTask').html('');
+			listaTodo();
+		}
+	});
+	$('#txtNovoTask').on('keypress', function(e) {
+		var code = e.which;
+		if (code === 13 && $('#txtNovoTask').text().trim() === '') {
+			$('#txtNovoTask').text('');
+		}
+	});
+
+	function adicionaTask(data, desc) {
+		todo.push({ data, id: todo.length, desc });
+		notificacaoTodo();
+	}
+
+	function listaTodo() {
+		todoData = todo.filter(function (o) {
+			return o.data == $('#dataEscolhida').text();
+		});
+
+		var html = todoData.reduce(function (oAnt, o) {
+			return `${oAnt}<div class="todo item" contenteditable="true">${o.desc}</div>`;
+		}, '');
+
+		$('#listaTodo').html(html);
+	}
+
+	function notificacaoTodo() {
+		// insere uma div na div do dia
+
+		todoData = todo.filter(function (o) {
+			return o.data == $('#dataEscolhida').text();
+		});
+
+		$('.dia:not(.cabecalhoDia)').each((i, e) => {
+			todoDataComDia = todoData.filter(function (o) {
+				return o.data == $(e).find('.num').text() + '/' + $('#labelCalendario').text();
+			});
+
+			if(todoDataComDia.length > 0) {
+				if ($(e).find('.tem-todo').length == 0) {
+					$(e).append('<div class="tem-todo">'+ todoDataComDia.length +'</div>');
+				} else {
+					$(e).find('.tem-todo').text(todoDataComDia.length);
+				}
+			}
+		});
+	}
+
+	$(document).on('change keydown keypress input', 'div[data-placeholder]', function () {
+		if (this.textContent) {
+			this.dataset.divPlaceholderContent = 'true';
+		} else {
+			delete (this.dataset.divPlaceholderContent);
+		}
+	});
+
+	function textbr(element) {
+		return $(element).html().replace(/<(?!br\s*\/?)[^>]+>/g, '');
+	}
+
+</script>
+
+<script>
+    (function () {
+  var xTablets = window.matchMedia("only screen and (min-width: 600px)")
+  var xDesktop = window.matchMedia("only screen and (min-width: 768px)")
+
+  function testMedias() {
+    if (xDesktop.matches) {
+      respDiaDesktop()
+    } else if (xTablets.matches) {
+      respDiaDesktop()
+    } else {
+      respDiaMobile()
+    }
+  }
+
+  testMedias()
+
+  // seleciona o nó alvo
+  var target = document.querySelector('body')
+
+  // cria uma nova instância de observador
+  var observer = new MutationObserver(function (mutations) {
+    testMedias()
+  })
+
+  // configuração do observador:
+  var config = { attributes: true, childList: true, characterData: true, subtree: true }
+
+  // passar o nó alvo, bem como as opções de observação
+  observer.observe(target, config)
+
+  for (var x of [xTablets, xDesktop]) {
+    x.addListener(testMedias)
+  }
+
+  function respDiaDesktop() {
+    for (var dia of document.querySelectorAll('.dia')) {
+      dia.style.height = document.querySelector('.dia').clientWidth + 'px'
+    }
+  }
+
+  function respDiaMobile() {
+    for (var dia of document.querySelectorAll('.dia')) {
+      dia.style.height = 'initial'
+    }
+  }
+})()
+</script>
+
+</html>

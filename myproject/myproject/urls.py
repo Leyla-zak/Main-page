@@ -32,5 +32,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('LogIn.html/', views.login, name='login'),
+    path('MyCalendar.html/', views.calen, name='calen'),
     path('MyPages.html/', views.mypages, name='mapages'),
 ]
