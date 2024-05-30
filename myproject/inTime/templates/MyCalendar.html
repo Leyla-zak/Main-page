@@ -161,12 +161,12 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
 @media only screen and (min-width: 768px) {
 	#meuCalendario {
-		height: 1000px;
-		width: 1000px;
+		height: 800px;
+		width: 800px;
 	}
 	.flip-container, .front, .back {
-		height: 1000px;
-		width: 1000px;
+		height: 800px;
+		width: 800px;
 	}
 	.dia {
 		width: 13.5770%;
@@ -323,7 +323,7 @@ const Calendario = (function () {
 
 					<div id="dataEscolhida">24/07/2018</div>
 
-					<div class="todo item" contenteditable="true" class="editable" data-placeholder="Desc Task:" id="txtNovoTask"></div>
+					<div class="todo item" contenteditable="true" class="editable" data-placeholder="Введите заметку:" id="txtNovoTask"></div>
 					<div id="listaTodo">
 					</div>
 				</div>
@@ -374,7 +374,6 @@ const Calendario = (function () {
 	}
 
 	function notificacaoTodo() {
-		// insere uma div na div do dia
 
 		todoData = todo.filter(function (o) {
 			return o.data == $('#dataEscolhida').text();

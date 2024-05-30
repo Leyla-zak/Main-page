@@ -6,6 +6,8 @@ def index(request):
     return render(request, "index.html")
 def login(request):
     return render(request, "Login.html")
+def signin(request):
+    return render(request, "SignUp.html")
 def calen(request):
     return render(request, "MyCalendar.html")
 def mypages(request):
