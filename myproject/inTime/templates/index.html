@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <style>
-    @media (min-width: 768px) {
+    @media screen and (min-width: 1824px) {
       body {
         width: 1800px;
       }
@@ -16,14 +16,14 @@
     body {
       font-family: 'IM FELL French Canon', sans-serif;
       padding: 0;
-      /* width: 1200px;  */
+      
+      align-content: center;
+
       margin: 0 auto;
       text-align: left;
       min-height: 100vh;
       min-width: 320px;
-      width: 100%;
-      /* width: 80%;
-      max-width: 1200px;  */
+      /* width: 100%; */
 
     }
     .header {
@@ -49,7 +49,7 @@
       font-weight: bold;
       color: #000;
       text-decoration: none;
-      margin-left: 60px;
+      margin-left: 160px;
     }
 
     .nav {
@@ -122,42 +122,6 @@
       margin-top: 1px;
     }
 
-    /* это если меню будет */
-/*
-    .menu-toggle {
-      background-color: transparent;
-      border: none;
-      color: #555;
-      font-size: 24px;
-      cursor: pointer;
-      margin-left: 10px;
-      margin-right: 30px;
-      position: relative;
-      left: -10px;
-    } */
-
-    /* .menu {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 10px 0;
-      list-style-type: none;
-      min-width: 150px;
-      z-index: 1;
-      display: none;
-
-    }
-
-    .menu li a {
-      display: block;
-      padding: 10px 20px;
-      color: #555;
-      text-decoration: none;
-      transition: background-color 0.3s;
-
-    } */
     .main-content {
       max-width: 1400px;
       margin: 0 auto;
@@ -176,8 +140,8 @@
       margin-right: 20px; /* добавление отступа между текстом и картинкой */
       margin-top: 150px;
       flex-basis: 50%;
+      
     }
-
 
     .main-content h1 {
       font-size: 48px;
@@ -192,12 +156,14 @@
       font-size: 24px;
       margin-bottom: 40px;
       line-height: 1.4;
+      /* flex-grow: 1; */
     }
 
 
     .image-wrapper {
       position: relative;
       max-width: 50%;
+      transform: translateY(-50px);
       /* margin-right: 50px; */
       height: auto; /* задаем фиксированную высоту */
       overflow: hidden; /* скрываем части изображений, которые выходят за границы */
@@ -206,14 +172,14 @@
     .main-image {
       position: absolute;
       object-fit: contain;
-      /* left: 500px; */
-      width: 100%;
-      height: 100%;
+      width: 850px;
+      height: 850px;
       top: 20px;
-      margin-left: 200px;
+      margin-left: 560px;
       opacity: 0;
       animation: imageSlide 10s infinite linear;
-      transform: scale(0.7);
+      /* transform: scale(0.7); */
+      transform: translateY(-20px);
     }
     .image1 {
       z-index: 1;
@@ -269,6 +235,35 @@
         .cta-button:hover {
           background-color: #333;
         }
+        .content {
+
+        flex-grow: 1;
+        padding: 10px;
+
+        }
+        .main-content {
+          flex-grow: 1;
+        }
+        footer {
+        background-color: black;
+        color: white;
+        padding: 7px;
+        text-align: center;
+        font-size: 14px;
+        flex-shrink: 0; 
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        }
+
+        footer a {
+        color: white;
+        text-decoration: none;
+        }
+
+        footer a:hover {
+        text-decoration: underline;
+        }
   </style>
 
 </head>
@@ -280,8 +275,8 @@
     <nav class="nav">
       <ul class="nav-links">
         
-        <li><a href="#">My calendar</a></li>
-        <li><a href="MyPages.html">My notes</a></li>
+        <li><a href="#">Мой календарь</a></li>
+        <li><a href="MyPages.html">Мои заметки</a></li>
         <li><a href="LogIn.html" class="login-link">Log In</a></li>
         <li><a href="#" class="theme-toggle-link">
           <i class="fas fa-sun"></i>
@@ -289,18 +284,6 @@
       </ul>
     </nav>
   </header>
-  
-
-  <!-- <main>
-    <section class="hero">
-      <h1>Streamline Your Workflow with IN TIME</h1>
-      <p>“IN TIME” is a planner 
-        that helps you plan your time 
-        and complete tasks 
-        with high productivity without stress.</p>
-      <a href="#" class="cta-button">Get Started</a>
-    </section>
-  </main> -->
 
   <main class="main-content">
     <div class="content-wrapper">
@@ -313,10 +296,14 @@
     </div>
   </main>
 
-  <!-- <footer>
-    <div class="container">
-      <p>&copy; 2024 IN-TIME. All rights reserved.</p>
+  <footer>
+    <div class="content">
+        <p>&copy; 2024 In Time. Все права защищены.</p>
+        <p>
+            <a href="#">Политика конфиденциальности</a> |
+            <a href="#">Условия использования</a>
+        </p>
     </div>
-  </footer> -->
+  </footer>
 </body>
 </html>
