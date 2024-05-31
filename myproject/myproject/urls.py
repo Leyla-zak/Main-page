@@ -14,5 +14,5 @@ urlpatterns = [
     path('LogIn.html/', views.login, name='login'),
     path('MyCalendar.html/', views.calen, name='calen'),
     path('MyPages.html/', views.mypages, name='mapages'),
-    path('LogIn.html/SignUp.html/', views.signin, name='signin'),
+    path('LogIn.html/SignUp.html/', views.signup, name='signup'),
 ]
