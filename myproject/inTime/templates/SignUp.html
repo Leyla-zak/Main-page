@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In</title>
+  <title>Регистрация</title>
   
   <style>
     body {
@@ -55,12 +55,11 @@
   <div class="login-container">
       <h1>In Time</h1>
       <form method="post">
-          {% csrf_token %}
-          <input type="text" placeholder="Имя пользователя" required>
+          Создайте свой аккаунт
+          <input type="text" placeholder="mail@example.com" required>
           <input type="password" placeholder="Пароль" required>
-          <button type="submit">Продолжить</button>
+          <button type="sign up">Зарегистрироваться</button>
       </form>
-      <p><a href="#">Первый раз?</a> | <a href="SignUp.html">Зарегистрироваться</a></p>
   </div>
 
 </body>
