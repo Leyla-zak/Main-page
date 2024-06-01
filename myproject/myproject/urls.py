@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import re_path
 from inTime import views
+from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
@@ -15,4 +16,6 @@ urlpatterns = [
     path('MyCalendar.html/', views.calen, name='calen'),
     path('MyPages.html/', views.mypages, name='mapages'),
     path('LogIn.html/SignUp.html/', views.signin, name='signin'),
+    path('api/inTime/', include('inTime.urls')),
+    
 ]
