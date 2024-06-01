@@ -2,7 +2,8 @@
 FROM python:3.11
 
 # Установим рабочую директорию
-WORKDIR C:\Users\Мой Компьютер\PycharmProjects\Сайт\myproject\inTime
+# WORKDIR C:\Users\Мой Компьютер\PycharmProjects\Сайт\myproject\inTime
+# WORKDIR /
 
 # Скопируем файлы требований
 COPY requirements.txt .
@@ -14,10 +15,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Укажем команду для запуска приложения
-# CMD ["python", "manage.py", "runserver", "127.0.0.1:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:3000"]
+
+# CMD ["uvicorn", "C.Users.Мой Компьютер.PycharmProjects.Сайт.myproject.asgi", "--host", "0.0.0.0", "--port", "8000"]
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE 1
-EXPOSE 8000
+ENV DJANGO_SETTINGS_MODULE=myproject.settings
+# EXPOSE 8000
 
-CMD bash -c 'uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload'
+# CMD bash -c 'uvicorn inTime.main:app --host 0.0.0.0 --port 8000 --reload'
+# CMD ["python", "manage.py", "--host", "127.0.0.1", "--port", "8000"]
+# CMD ["uvicorn", "myproject.asgi:", "--host", "0.0.0.0", "--port", "8000"]
+CMD uvicorn --host=0.0.0.0 --port=8000 myproject.asgi:application
+

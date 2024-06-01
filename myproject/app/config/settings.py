@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     DEBUG: bool = bool(os.environ.get("DEBUG", False))
     
     # FrontEnd Application
-    FRONTEND_HOST: str = os.environ.get("FRONTEND_HOST", "http://localhost:3000")
+    FRONTEND_HOST: str = os.environ.get("FRONTEND_HOST", "http://localhost:8000")
 
     # MySql Database Config
     MYSQL_HOST: str = os.environ.get("MYSQL_HOST", 'localhost')
