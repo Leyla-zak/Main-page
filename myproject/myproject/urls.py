@@ -16,6 +16,4 @@ urlpatterns = [
     path('MyCalendar.html/', views.calen, name='calen'),
     path('MyPages.html/', views.mypages, name='mapages'),
     path('LogIn.html/SignUp.html/', views.signin, name='signin'),
-    path('api/inTime/', include('inTime.urls')),
-    
 ]
