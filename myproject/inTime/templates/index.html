@@ -294,7 +294,7 @@
       <ul class="nav-links">
         
         <li><a href="MyCalendar.html">Мой календарь</a></li>
-        <li><a href="MyPages.html">Мои заметки</a></li>
+        <li><a href="{% url 'tasks' %}"><i class="bi bi-list-task"></i> My Tasks</a></li>
 
         <li>
           {% if user.is_authenticated %}
