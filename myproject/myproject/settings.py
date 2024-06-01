@@ -2,6 +2,7 @@
 from pathlib import Path
 from app.config.settings import Settings
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = Settings.SECRET_KEY
@@ -51,13 +52,14 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'myproject.asgi.application'
 
+settings = Settings()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
     'sqlalchemy': {
-        'URL':  Settings.DATABASE_URI
+        'URL':  settings.DATABASE_URI
        }
    }
 
