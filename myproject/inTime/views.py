@@ -7,13 +7,13 @@ from django.contrib import messages
 from django.views.generic.list import ListView
 from .models import Task
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth.forms import *
+from django.contrib.auth import login
+from .forms import RegisterForm
 
 def index(request):
     return render(request, "index.html")
-
-def signup(request):
-    return render(request, "SignUp.html")
 
 def logout_view(request):
     logout(request)
@@ -23,7 +23,18 @@ def logout_view(request):
 def calen(request):
     return render(request, "MyCalendar.html")
 
-
+class RegisterView(FormView):
+    template_name = 'signup.html'
+    form_class = RegisterForm
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('tasks')
+    
+    def form_valid(self, form):
+        user = form.save()
+        if user:
+            login(self.request, user)
+            
+        return super(RegisterView, self).form_valid(form)
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task

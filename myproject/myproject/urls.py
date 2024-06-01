@@ -8,7 +8,8 @@ from inTime.views import (
     TaskDetail, 
     TaskCreate, 
     TaskUpdate,
-    TaskDelete
+    TaskDelete,
+    RegisterView,
 )
 
 
@@ -17,12 +18,11 @@ urlpatterns = [
     path('', views.index),
     
     path('MyCalendar.html/', views.calen, name='calen'),
-    # path('MyPages.html/', views.mypages, name='mapages'),
 
-    path('LogIn.html/SignUp.html/', views.signup, name='signup'),
     path('logout/', views.logout_view, name='logged_out'),
     path('accounts/', include('django.contrib.auth.urls')),
-
+    
+    path('user/registration/', RegisterView.as_view(),name='signup'),
     path('tasks/', TaskList.as_view(),name='tasks'),
     path('task/<int:pk>/', TaskDetail.as_view(),name='task'),
     path('task/create/', TaskCreate.as_view(),name='task-create'),

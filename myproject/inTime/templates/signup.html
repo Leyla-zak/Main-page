@@ -57,13 +57,16 @@
       <h1>In Time</h1>
       <form method="post">
           {% csrf_token %}
-          <input type="text" placeholder="Имя пользователя" required>
-          <input type="email" placeholder="Почта" required>
-          <input type="password" placeholder="Пароль" required>
-          <input type="password" placeholder="Проверка пароля" required>
+          {% for field in form %}
+          {{ field.label_tag }} 
+          {{ field }}
+          {% if field.errors %}
+              <small class="error">{{ field.errors|striptags  }}</small> 
+          {% endif %}
+  {% endfor %}
           <button type="submit">Зарегистрироваться</button>
       </form>
-      <p><a href="Login.html">Уже есть аккаунт?</a></p>
+      <p><a href="{% url 'login' %}">Уже есть аккаунт?</a></p>
   </div>
 
 </body>
