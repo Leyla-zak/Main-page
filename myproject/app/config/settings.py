@@ -33,7 +33,7 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_MINUTES: int = int(os.environ.get("REFRESH_TOKEN_EXPIRE_MINUTES", 1440))
 
     # App Secret Key
-    SECRET_KEY: str = os.environ.get("SECRET_KEY", "8deadce9449770680910741063cd0a3fe0acb62a8978661f421bbcbb66dc41f1")
+    SECRET_KEY: str = os.environ.get("SECRET_KEY", "django-insecure-of-n&vf&8^6@g+bawdo4-53&#aed2308&y7=51$6#+ecv9vn$$")
 
 
 @lru_cache()
