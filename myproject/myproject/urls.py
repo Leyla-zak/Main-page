@@ -12,9 +12,10 @@ from inTime import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('LogIn.html/', views.login, name='login'),
+    # path('LogIn.html/', views.login, name='login'),
     path('MyCalendar.html/', views.calen, name='calen'),
-    path('MyPages.html/', views.mypages, name='mapages'),
+    path('MyPages.html/', views.mypages, name='mypages'),
     path('LogIn.html/SignUp.html/', views.signup, name='signup'),
+    
     path('accounts/', include('django.contrib.auth.urls')),
 ]
