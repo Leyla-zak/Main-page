@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Регистрация</title>
-  
+  <title>Sign Up</title>
+
   <style>
     body {
         font-family: Arial, sans-serif;
@@ -16,8 +16,9 @@
         height: 100vh;
         margin: 0;
     }
-    .login-container {
-        background-color: white;
+    .signup-container {
+        width: 400px; 
+        max-width: 100%; 
         padding: 40px;
         border-radius: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,7 +27,7 @@
     h1 {
         margin-top: 0;
     }
-    input[type="text"], input[type="password"] {
+    input[type="text"], input[type="email"], input[type="password"] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -52,14 +53,17 @@
 </style>
 </head>
 <body>
-  <div class="login-container">
+  <div class="signup-container">
       <h1>In Time</h1>
       <form method="post">
-          Создайте свой аккаунт
-          <input type="text" placeholder="mail@example.com" required>
+          {% csrf_token %}
+          <input type="text" placeholder="Имя пользователя" required>
+          <input type="email" placeholder="Почта" required>
           <input type="password" placeholder="Пароль" required>
-          <button type="sign up">Зарегистрироваться</button>
+          <input type="password" placeholder="Проверка пароля" required>
+          <button type="submit">Зарегистрироваться</button>
       </form>
+      <p><a href="Login.html">Уже есть аккаунт?</a></p>
   </div>
 
 </body>

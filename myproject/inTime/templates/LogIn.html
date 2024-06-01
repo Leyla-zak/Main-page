@@ -52,16 +52,30 @@
 </style>
 </head>
 <body>
-  <div class="login-container">
-      <h1>In Time</h1>
-      <form method="post">
+    {% block content %}
+      <div class="signup-container">
+        <h1>In Time</h1>
+        {% if form.errors %}
+          <p>Ваше имя пользователя и пароль не совпали. Пожалуйста, попробуйте еще раз.</p>
+        {% endif %}
+        {% if next %}
+          {% if user.is_authenticated %}
+            <p>Вы не имеете доступа к этой странице. Войдите в систему с другими параметрами</p>
+          {% else %}
+            <p>Войдите в систему, чтобы увидеть эту страницу.</p>
+          {% endif %}
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
-          <input type="text" placeholder="Имя пользователя" required>
-          <input type="password" placeholder="Пароль" required>
-          <button type="submit">Продолжить</button>
-      </form>
-      <p><a href="#">Первый раз?</a> | <a href="SignUp.html">Зарегистрироваться</a></p>
-  </div>
-
+          <input type="text" placeholder="Имя пользователя" required name="username">
+          <input type="password" placeholder="Пароль" required name="password">
+          <input type="submit" value="Вход">
+          <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <p><a href="{% url 'signup' %}">Еще нет аккаунта?</a></p>
+      </div>
+    {% endblock %}
+    
 </body>
 </html>
+
