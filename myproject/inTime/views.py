@@ -7,10 +7,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth import logout
 from .forms import *
 from .models import *
 from .utils import *
+from django.contrib import messages
 
 def index(request):
     return render(request, "index.html")
@@ -18,11 +19,31 @@ def index(request):
 def signup(request):
     return render(request, "SignUp.html")
 
-def calen(request):
-    return render(request, "MyCalendar.html")
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Вы успешно вышли из системы.")
+    return redirect('/')
 
-def mypages(request):
-    return render(request, "MyPages.html")
+# def logged_out(request):
+#     return render(request, 'logged_out.html')
+
+# def password_reset(request):
+#     return render(request, 'password_reset_form.html')
+
+# def reset_pass_done(request):
+#     return render(request, 'password_reset_done.html')
+
+# def reset_pass_conf(request):
+#     return render(request, 'password_reset_confirm.html')
+
+# def reset_pass_comp(request):
+#     return render(request, 'password_reset_complete.html')
+
+# def calen(request):
+#     return render(request, "MyCalendar.html")
+
+# def mypages(request):
+#     return render(request, "MyPages.html")
 
 # class RegisterUser(DataMixin, CreateView):
 #     form_class = RegisterUserForm

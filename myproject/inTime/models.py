@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
-class User(AbstractBaseUser, BaseUserManager):
+class CustomUser(AbstractBaseUser, BaseUserManager):
     """
     Пользователь ToDo списка.
     """
@@ -29,7 +29,7 @@ class Task(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     due_date = models.DateField(verbose_name='Срок выполнения')
     completed = models.BooleanField(default=False, verbose_name='Выполнено')
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', verbose_name='Создано пользователем')
+    created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='tasks', verbose_name='Создано пользователем')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     

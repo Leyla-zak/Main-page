@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inTime.models import User, Task
+from inTime.models import CustomUser, Task
 
-admin.site.register(User)
-admin.site.register(Task)
+# admin.site.register(CustomUser)
+# admin.site.register(Task)

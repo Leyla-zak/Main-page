@@ -268,6 +268,24 @@
 
 </head>
 <body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var alertElement = document.querySelector('.alert');
+      if (alertElement) {
+        setTimeout(function() {
+          alertElement.style.display = 'none';
+        }, 5000); // Скрыть сообщение через 5 секунд
+      }
+    });
+  </script>
+  {% if messages %}
+    <div class="alert alert-success">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <header class="header">
     <div class="logo-container">
       <a href="#" class="logo">IN TIME</a>
@@ -277,8 +295,14 @@
         
         <li><a href="MyCalendar.html">Мой календарь</a></li>
         <li><a href="MyPages.html">Мои заметки</a></li>
-     
-        <li><a href="accounts/login" class="login-link">Вход</a></li>
+
+        <li>
+          {% if user.is_authenticated %}
+            <a href="{% url 'logged_out' %}" class="login-link">Выход</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="login-link">Вход</a>
+          {% endif %}
+        </li>
         <li><a href="#" class="theme-toggle-link">
           <i class="fas fa-sun"></i>
         </a></li>
