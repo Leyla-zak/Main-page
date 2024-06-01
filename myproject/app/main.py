@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routes import user
+from .routes import user
 
 def create_application():
     application = FastAPI()
