@@ -49,27 +49,77 @@
         color: black;
         text-decoration: none;
     }
+
+    .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    </style>
 </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="post">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Register</button>
-        {% if error %}
-            <div class="error">{{ error }}</div>
-        {% endif %}
-    </form>
+    <div class="login-container">
+        <h2 class="text-center mb-4">Register</h2>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div id="error-message" class="text-danger mb-3"></div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+
+<script>
+    document.getElementById('registration-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Validate form fields
+        if (password !== confirmPassword) {
+            document.getElementById('error-message').textContent = 'Passwords do not match.';
+            return;
+        }
+
+        try {
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+
+            if (response.ok) {
+                // Registration successful, redirect or show success message
+                window.location.href = '/login';
+            } else {
+                const errorData = await response.json();
+                document.getElementById('error-message').textContent = errorData.detail;
+            }
+        } catch (error) {
+            document.getElementById('error-message').textContent = 'An error occurred. Please try again.';
+        }
+    });
+</script>
 </body>
 </html>
