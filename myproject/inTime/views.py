@@ -108,4 +108,3 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     
 def home(request):
     return render(request,'index.html')
-     
