@@ -1,6 +1,6 @@
 # Сайтик планер
 - [x] git
-- [ ] Docker
+- [x] Docker
 - [ ] Restful API/Fast API
 - [x] Azure DevOPS
 - [ ] RabbitMQ
