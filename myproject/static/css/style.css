@@ -52,11 +52,20 @@ textarea:focus {
   box-shadow: 0 0 0 0.125rem rgb(238, 57, 76, 25%);
 }
 body {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'IM FELL French Canon', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   display: flex;
   flex-direction: column;
+  /* 
+  padding: 0;
+  
+  align-content: center;
+
+  margin: 0 auto;
+  text-align: left;
+  min-height: 100vh;
+  min-width: 320px; */
 }
 
 h1 {
@@ -83,21 +92,27 @@ a:hover {
 
 .header {
   border-bottom: solid 1px var(--color-light);
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header .container {
   display: flex;
   align-items: center;
-  gap:1rem;
-  
+  /* gap:1rem; */
+  width: auto;
 }
 
 .nav {
 	display:flex;
-	gap:1rem;
+	/* gap:1rem; */
 	align-items: center;
 	justify-content: center;
-	flex-basis: 100%;
+	/* flex-basis: 100%; */
 }
 
 
@@ -110,11 +125,12 @@ a:hover {
 
 .logo {
   padding: 0.5rem;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   text-decoration: none;
   color: var(--color-white);
   font-weight: bold;
   text-transform: uppercase;
+  padding: 10px;
 }
 .logo:hover {
   text-decoration: none;
@@ -258,12 +274,39 @@ textarea {
   text-align: center;
 }
 
-.footer {
-  margin-top: auto;
-  padding: 0.5rem 0;
-  border-top: solid 1px var(--color-light);
+.content {
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+
 }
 
+.footer {
+  /* margin-top: auto;
+  padding: 0.5rem 0;
+  border-top: solid 1px var(--color-light); */
+  color: white;
+  position: relative;/*относительное позиционирование*/
+  width: 100%;/*на всю ширину*/
+  padding: 30px;/*поля для контента*/
+  background: #080808;/*цвет футера*/
+  display: flex;
+  justify-content: center;/*в центре по горизонтали*/
+  align-items: center;/*в центре по вертикали*/
+  flex-direction: column;
+  margin-top: 40px;
+  /*отступ сверху*/
+  text-decoration: underline;
+  
+}
+footer a {
+  color: white;
+  text-decoration: none;
+  }
+
+  footer a:hover {
+  text-decoration: underline;
+  }
 .btn {
   padding: 0.25rem 0.75rem;
   border-radius: var(--border-radius);
