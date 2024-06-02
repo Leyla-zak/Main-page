@@ -280,6 +280,7 @@ textarea {
   padding: 10px;
 
 }
+
 .footer {
   /* margin-top: auto;
   padding: 0.5rem 0;
@@ -293,12 +294,19 @@ textarea {
   justify-content: center;/*в центре по горизонтали*/
   align-items: center;/*в центре по вертикали*/
   flex-direction: column;
-  /* margin-top: 10px; */
+  margin-top: 40px;
   /*отступ сверху*/
   text-decoration: underline;
   
 }
+footer a {
+  color: white;
+  text-decoration: none;
+  }
 
+  footer a:hover {
+  text-decoration: underline;
+  }
 .btn {
   padding: 0.25rem 0.75rem;
   border-radius: var(--border-radius);
