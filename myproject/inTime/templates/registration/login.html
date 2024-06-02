@@ -69,7 +69,7 @@
       {% csrf_token %}
       <input type="text" placeholder="Имя пользователя" required name="username">
       <input type="password" placeholder="Пароль" required name="password">
-      <input type="submit" value="Вход">
+      <button type="submit">Продолжить</button>
       <input type="hidden" name="next" value="{{ next }}">
     </form>
     <p><a href="{% url 'password_reset' %}">Утерян пароль?</a></p>
