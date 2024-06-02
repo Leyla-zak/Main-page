@@ -11,6 +11,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.contrib.auth.forms import *
 from django.contrib.auth import login
 from .forms import RegisterForm
+from django.core.exceptions import ValidationError
+from django import forms
 
 def index(request):
     return render(request, "index.html")
@@ -23,6 +25,15 @@ def logout_view(request):
 def calen(request):
     return render(request, "MyCalendar.html")
 
+def validate_date(date):
+    try:
+        import datetime
+        date_obj = datetime.datetime.strptime(date, "%Y-%m-%d")
+        if len(str(date_obj.year)) != 4:
+            raise ValidationError("The year should have 4 digits.")
+    except ValueError:
+        raise ValidationError("Invalid date format. Please use YYYY-MM-DD.")
+    
 class RegisterView(FormView):
     template_name = 'signup.html'
     form_class = RegisterForm
@@ -35,64 +46,65 @@ class RegisterView(FormView):
             login(self.request, user)
             
         return super(RegisterView, self).form_valid(form)
-
+    
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'completed', 'due_date']
+        widgets = {
+            'due_date': forms.DateInput(attrs={'type': 'date'})
+        }
+        validators = {
+            'due_date': [validate_date]
+        }
+        
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tasks'] = context['tasks'].filter(user=self.request.user)
-        return context
-    
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
-    
-    def get_queryset(self):
-        base_qs = super(TaskDetail, self).get_queryset()
-        return base_qs.filter(user=self.request.user)
-    
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title','description','completed']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
-    
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         messages.success(self.request, "The task was created successfully.")
-        return super(TaskCreate,self).form_valid(form)
-        
-    
+        return super().form_valid(form)
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['title','description','completed']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
-    
+
     def form_valid(self, form):
         messages.success(self.request, "The task was updated successfully.")
-        return super(TaskUpdate,self).form_valid(form)
-      
+        return super().form_valid(form)
+
     def get_queryset(self):
-        base_qs = super(TaskUpdate, self).get_queryset()
-        return base_qs.filter(user=self.request.user)
-    
+        return super().get_queryset().filter(user=self.request.user)
+
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
-    context_object_name = 'task'
     success_url = reverse_lazy('tasks')
-    
+
     def form_valid(self, form):
         messages.success(self.request, "The task was deleted successfully.")
-        return super(TaskDelete,self).form_valid(form)
-      
+        return super().form_valid(form)
+
     def get_queryset(self):
-        base_qs = super(TaskDelete, self).get_queryset()
-        return base_qs.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
     
-    def home(request):
-        return render(request,'index.html')
+def home(request):
+    return render(request,'index.html')
      
