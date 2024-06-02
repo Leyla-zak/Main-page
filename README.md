@@ -1,7 +1,7 @@
 # Сайтик планер
 - [x] git
 - [x] Docker
-- [ ] Restful API/Fast API
+- [x] Restful API/Fast API
 - [x] Azure DevOPS
 - [ ] RabbitMQ
 - [ ] JWT
