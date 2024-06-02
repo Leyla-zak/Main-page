@@ -10,11 +10,14 @@ def check_overdue_tasks():
     for task in overdue_tasks:
         subject = f"Task '{task.title}' is overdue"
         message = render_to_string('tasks/overdue_task_email.html', {'task': task})
-        send_mail(
+        try:
+            send_mail(
             subject,
             message,
             'from@example.com',
             [task.user.email],
             fail_silently=False,
-        )
-        print(f"Overdue task '{task.title}' notification sent to {task.user.email}")
+            )
+            print(f"Overdue task '{task.title}' notification sent to {task.user.email}")
+        except Exception as e:
+            print(f"Error sending overdue task notification: {e}") 
