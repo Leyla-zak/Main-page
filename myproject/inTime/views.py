@@ -45,6 +45,7 @@ class UserListCreateView(generics.ListCreateAPIView):
 class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer 
+
 class RegisterView(FormView):
     template_name = 'signup.html'
     form_class = RegisterForm

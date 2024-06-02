@@ -15,7 +15,7 @@ from inTime.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index, name = 'home'),
     
     path('MyCalendar.html/', views.calen, name='calen'),
 

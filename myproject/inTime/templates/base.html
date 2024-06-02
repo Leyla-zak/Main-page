@@ -99,7 +99,7 @@
             <nav class="nav">
             	<ul class="nav-links">
 	                {% if request.user.is_authenticated %}
-	    	              	<li><a href="{% url 'tasks' %}"><i class="login-link"></i> Мои задачи</a></li>
+	    	              	<li><a href="{% url 'home' %}"><i class="login-link"></i> Главная</a></li>
                             <li><a href="{% url 'task-create' %}"><i class="login-link"></i> Создать задачу</a></li>
                             <li><a href="{% url 'logged_out' %}" class="login-link">Выйти</a></li>
 	                {% else %}
