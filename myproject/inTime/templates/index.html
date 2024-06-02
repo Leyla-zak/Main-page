@@ -49,7 +49,7 @@
       font-weight: bold;
       color: #000;
       text-decoration: none;
-      margin-left: 160px;
+      margin-left: 100px;
     }
 
     .nav {
@@ -62,7 +62,7 @@
       list-style-type: none;
       display: flex;
       align-items: center;
-      margin-left: 20px;
+      margin-left: 10px;
 
 
       justify-content: center;
@@ -74,7 +74,7 @@
     }
 
     .nav-links li:nth-child(2) { /* Мои заметки */
-      margin-right: 980px;
+      margin-right: 900px;
     }
 
 
@@ -103,7 +103,7 @@
       border-radius: 20px;
       text-decoration: none;
       transition: background-color 0.3s;
-      margin-left: 20px;
+      /* margin-left: 10px; */
       font-size: 20px;
     }
 
@@ -178,8 +178,8 @@
       margin-left: 560px;
       opacity: 0;
       animation: imageSlide 10s infinite linear;
-      /* transform: scale(0.7); */
-      transform: translateY(-20px);
+      transform: scale(1);
+      /* transform: translateY(-4px); */
     }
     .image1 {
       z-index: 1;
@@ -238,14 +238,14 @@
         .content {
 
         flex-grow: 1;
-        padding: 10px;
+        padding: 20px;
 
         }
         .main-content {
           flex-grow: 1;
         }
         footer {
-        background-color: black;
+        /* background-color: black;
         color: white;
         padding: 7px;
         text-align: center;
@@ -253,7 +253,17 @@
         flex-shrink: 0; 
         position: absolute;
         bottom: 0;
-        width: 100%;
+        width: 100%; */
+        color: white;
+        position: relative;/*относительное позиционирование*/
+        width: 100%;/*на всю ширину*/
+        padding: 7px;/*поля для контента*/
+        background: #080808;/*цвет футера*/
+        display: flex;
+        justify-content: center;/*в центре по горизонтали*/
+        align-items: center;/*в центре по вертикали*/
+        flex-direction: column;
+        margin-top: 200px;/*отступ сверху*/
         }
 
         footer a {
