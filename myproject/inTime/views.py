@@ -82,7 +82,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         messages.success(self.request, "The task was created successfully.")
         return super().form_valid(form)
-
+       
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm
