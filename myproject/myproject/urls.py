@@ -11,7 +11,10 @@ from inTime.views import (
     TaskDelete,
     RegisterView,
 )
-
+#тут если не работает
+from django.contrib import admin
+from django.urls import path, include
+#-------
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +31,11 @@ urlpatterns = [
     path('task/create/', TaskCreate.as_view(),name='task-create'),
     path('task/update/<int:pk>/', TaskUpdate.as_view(),name='task-update'),
     path('task/delete/<int:pk>/', TaskDelete.as_view(),name='task-delete'),
+    #тут если не работает
+    path('admin/', admin.site.urls),
+    path('api/', include('inTime.urls')),  # Замените 'myapp' на имя вашего приложения
+    path('api-auth/', include('rest_framework.urls')),  # Для авторизации
+    #-----------
 ]
 
 if settings.DEBUG:

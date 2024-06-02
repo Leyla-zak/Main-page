@@ -12,6 +12,20 @@ from django.contrib.auth.forms import *
 from django.contrib.auth import login
 from .forms import RegisterForm
 
+#тут, если не работает
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer
+
+class UserListCreateView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+#------------
+
 def index(request):
     return render(request, "index.html")
 
