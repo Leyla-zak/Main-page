@@ -103,16 +103,16 @@ a:hover {
 .header .container {
   display: flex;
   align-items: center;
-  gap:1rem;
-  
+  /* gap:1rem; */
+  width: auto;
 }
 
 .nav {
 	display:flex;
-	gap:1rem;
+	/* gap:1rem; */
 	align-items: center;
 	justify-content: center;
-	flex-basis: 100%;
+	/* flex-basis: 100%; */
 }
 
 
@@ -274,6 +274,12 @@ textarea {
   text-align: center;
 }
 
+.content {
+  align-items: center;
+  flex-grow: 1;
+  padding: 10px;
+
+}
 .footer {
   /* margin-top: auto;
   padding: 0.5rem 0;
@@ -287,8 +293,10 @@ textarea {
   justify-content: center;/*в центре по горизонтали*/
   align-items: center;/*в центре по вертикали*/
   flex-direction: column;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   /*отступ сверху*/
+  text-decoration: underline;
+  
 }
 
 .btn {
