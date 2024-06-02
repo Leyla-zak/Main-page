@@ -38,6 +38,8 @@ def validate_date(date):
     except ValueError:
         raise ValidationError("Invalid date format. Please use YYYY-MM-DD.")
 
+
+
 class UserListCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
