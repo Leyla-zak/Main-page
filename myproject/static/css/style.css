@@ -52,11 +52,20 @@ textarea:focus {
   box-shadow: 0 0 0 0.125rem rgb(238, 57, 76, 25%);
 }
 body {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'IM FELL French Canon', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   display: flex;
   flex-direction: column;
+  /* 
+  padding: 0;
+  
+  align-content: center;
+
+  margin: 0 auto;
+  text-align: left;
+  min-height: 100vh;
+  min-width: 320px; */
 }
 
 h1 {
@@ -83,6 +92,12 @@ a:hover {
 
 .header {
   border-bottom: solid 1px var(--color-light);
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header .container {
@@ -110,11 +125,12 @@ a:hover {
 
 .logo {
   padding: 0.5rem;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   text-decoration: none;
   color: var(--color-white);
   font-weight: bold;
   text-transform: uppercase;
+  padding: 10px;
 }
 .logo:hover {
   text-decoration: none;
@@ -259,9 +275,20 @@ textarea {
 }
 
 .footer {
-  margin-top: auto;
+  /* margin-top: auto;
   padding: 0.5rem 0;
-  border-top: solid 1px var(--color-light);
+  border-top: solid 1px var(--color-light); */
+  color: white;
+  position: relative;/*относительное позиционирование*/
+  width: 100%;/*на всю ширину*/
+  padding: 30px;/*поля для контента*/
+  background: #080808;/*цвет футера*/
+  display: flex;
+  justify-content: center;/*в центре по горизонтали*/
+  align-items: center;/*в центре по вертикали*/
+  flex-direction: column;
+  margin-top: 10px;
+  /*отступ сверху*/
 }
 
 .btn {
