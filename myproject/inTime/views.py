@@ -14,6 +14,9 @@ from django.contrib.auth import login
 from .forms import RegisterForm
 from django.core.exceptions import ValidationError
 from django import forms
+from rest_framework import generics
+from .serializers import UserSerializer
+from django.contrib.auth.models import User
 
 def index(request):
     return render(request, "index.html")
@@ -34,7 +37,17 @@ def validate_date(date):
             raise ValidationError("The year should have 4 digits.")
     except ValueError:
         raise ValidationError("Invalid date format. Please use YYYY-MM-DD.")
-    
+
+
+
+class UserListCreateView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer 
+
 class RegisterView(FormView):
     template_name = 'signup.html'
     form_class = RegisterForm
@@ -82,7 +95,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         messages.success(self.request, "The task was created successfully.")
         return super().form_valid(form)
-
+       
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskForm

@@ -15,7 +15,7 @@ from inTime.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index, name = 'home'),
     
     path('MyCalendar.html/', views.calen, name='calen'),
 
@@ -28,6 +28,9 @@ urlpatterns = [
     path('task/create/', TaskCreate.as_view(),name='task-create'),
     path('task/update/<int:pk>/', TaskUpdate.as_view(),name='task-update'),
     path('task/delete/<int:pk>/', TaskDelete.as_view(),name='task-delete'),
+
+    path('api/', include('inTime.urls')), 
+    path('api-auth/', include('rest_framework.urls')),  
 ]
 
 if settings.DEBUG:
