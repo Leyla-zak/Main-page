@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-of-n&vf&8^6@g+bawdo4-53&#aed2308&y7=51$6#+ecv9vn$$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 # Application definition
 
@@ -137,11 +137,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
-
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost'
-CELERY_BEAT_SCHEDULE = {
-    'send-overdue-notification': {
-        'task': 'tasks.send_overdue_notification',
-        'schedule': timedelta(seconds=30),
-    },
-}
