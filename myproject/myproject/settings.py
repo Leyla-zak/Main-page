@@ -137,11 +137,4 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
-
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost'
-CELERY_BEAT_SCHEDULE = {
-    'send-overdue-notification': {
-        'task': 'tasks.send_overdue_notification',
-        'schedule': timedelta(seconds=30),
-    },
-}
