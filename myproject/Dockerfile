@@ -1,6 +1,6 @@
 # Используем базовый образ Python
-FROM python:3.11
-
+FROM python:3.11.3
+RUN python -m pip install --upgrade pip
 # Установим рабочую директорию
 # WORKDIR C:\Users\Мой Компьютер\PycharmProjects\Сайт\myproject\inTime
 WORKDIR /Сайт/myproject
